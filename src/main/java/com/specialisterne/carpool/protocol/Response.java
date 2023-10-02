@@ -8,7 +8,7 @@ package com.specialisterne.carpool.protocol;
  *
  * @author q
  */
-public class ResponseAlive {
+public class Response {
     
     private Integer status;
 
