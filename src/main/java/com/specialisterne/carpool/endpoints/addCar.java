@@ -13,14 +13,12 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.util.Iterator;
-import java.util.Map;
 
 /**
  *
  * @author q
  */
-@WebServlet(name = "addCar", urlPatterns = {"/car/addCar.servlet"})
+@WebServlet(name = "addCar", urlPatterns = {"/carpool/endpoints/addCar.servlet"})
 public class addCar extends HttpServlet {
 
     /**

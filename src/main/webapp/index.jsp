@@ -1,14 +1,38 @@
 <%-- 
     Document   : index.jsp
     Created on : 2 Oct 2023, 11:18:43
-    Author     : q
+    Author     : MAN
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
-<jsp:include page="includes/header.html" />
+<!DOCTYPE html>
+<html>
+    
+    <header>
+        <jsp:include page="includes/header.jsp" />
+    </header>
+    <nav>
+        <hr>
+            <div id="nav_menu">
+                <h1> Navigation Menu </h1>
+            </div>
+        <hr>
+    </nav>
 
-    <body>
-        <h1>Hello World!</h1>
-    </body>
+    <section>
+        <div id="workspace">
+          <p> Workspace </p>
+        </div>
+
+        <jsp:include page="includes/menulogic.jspf" />
+        
+    </section>
+    
+    <footer>
+        
+        <jsp:include page="includes/footer.jsp" />
+
+    </footer>
+
 </html>

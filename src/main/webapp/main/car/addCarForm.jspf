@@ -1,0 +1,42 @@
+
+<p> Enter car data: </p>
+        
+<form id = 'addCarForm'>
+    
+    Brand: <input type="text" name="carBrand"> <br>
+                
+    Model: <input type="text" name="carModel"> <br>
+                
+    Seats: <input type="number" name="carSeats"> <br>
+                
+    License: <input type="text" name="carLicense"> <br>
+                
+    Engine: 
+                
+    <br>
+                
+    <input type="radio" id="combustion" name="carEngineType" value="Combustion"> 
+                  
+        <label for="combustion">Combustion</label><br>
+                
+    <input type="radio" id="electric" name="carEngineType" value="Electric">
+                  
+        <label for="electric">Electric</label><br>
+                
+    <input type="radio" id="hybrid" name="carEngineType" value="Hybrid">
+                  
+        <label for="hybrid">Hybrid</label>
+                
+    <br>
+        
+    Current Autonomy: <input type="number" name="carCurrentAutonomy"> <br>
+                
+    Image:  <br>
+                
+    <br>
+                
+    </p>
+    
+</form>
+
+    

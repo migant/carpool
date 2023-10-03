@@ -1,0 +1,7 @@
+
+<h2>Main Menu</h2>
+
+<button id="navMainAddCarButton">Add Car</button>
+
+<button id="navMainListAllCarsButton">List All Cars</button>
+

@@ -1,0 +1,6 @@
+<h2>Add Car Menu</h2>
+
+<button id="navButtonAddCarSave">Save</button>
+
+<button id="navButtonAddCarCancel">Cancel</button>
+
