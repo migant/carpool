@@ -1,42 +1,41 @@
 
-<p> Enter car data: </p>
+<h1> Enter car data: </h1>
         
 <form id = 'addCarForm'>
+
+    <p>
+        
+    Brand: <input type="text" name="carBrand"> <br><br>
+                
+    Model: <input type="text" name="carModel"> <br><br>
+                
+    Seats: <input type="number" name="carSeats"> <br><br>
+                
+    License: <input type="text" name="carLicense"> <br><br>
     
-    Brand: <input type="text" name="carBrand"> <br>
-                
-    Model: <input type="text" name="carModel"> <br>
-                
-    Seats: <input type="number" name="carSeats"> <br>
-                
-    License: <input type="text" name="carLicense"> <br>
-                
-    Engine: 
-                
-    <br>
-                
-    <input type="radio" id="combustion" name="carEngineType" value="Combustion"> 
-                  
-        <label for="combustion">Combustion</label><br>
-                
-    <input type="radio" id="electric" name="carEngineType" value="Electric">
-                  
-        <label for="electric">Electric</label><br>
-                
-    <input type="radio" id="hybrid" name="carEngineType" value="Hybrid">
-                  
-        <label for="hybrid">Hybrid</label>
-                
+    <fieldset>
+        <legend>Select engine type:</legend>
+        <div>
+          <input type="radio" id="t1" name="engine" value="combustion" checked />
+          <label for="combustion">Combustion</label>
+        </div>
+        <div>
+          <input type="radio" id="t2" name="engine" value="electric" />
+          <label for="electric">Electric</label>
+        </div>
+        <div>
+          <input type="radio" id="t3" name="engine" value="hybrid" />
+          <label for="hybrid">Hybrid</label>
+        </div>
+    </fieldset>
+
     <br>
         
-    Current Autonomy: <input type="number" name="carCurrentAutonomy"> <br>
+    Current Autonomy: <input type="number" name="carCurrentAutonomy"> <br><br>
                 
-    Image:  <br>
-                
-    <br>
+    Image:  <br><br>
                 
     </p>
     
 </form>
 
-    

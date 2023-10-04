@@ -1,12 +1,172 @@
 
 <script>
-    
-    //
-    // Menu logic Code
-    // 
 
     //
-    // Fetch HTML code fragment from url and place it in dest and call setupListenners
+    // Updatable divs
+    //
+    const navMenu = document.getElementById('nav_menu');                // Menu div
+    const workspace = document.getElementById('workspace');             // Workspace div
+
+    // Main Menu Buttons
+    var buttonAddCar;
+    var buttonListAllCars;
+    // Add Car Menu Buttons
+    var buttonAddCarSave;
+    var buttonAddCarCancel;
+    // List All Cars Menu Buttons
+    var listAllCarsCancelButton;
+
+    
+    //**********************
+    // Menu logic Code
+    //**********************
+    
+    //
+    // The Main menu
+    //
+    function showMainMenu()
+    {
+        fetchFragment('/carpool/main/mainMenu.jspf', navMenu, installMainMenuListenners);
+        fetchFragment('/carpool/main/mainWorkspace.jspf', workspace, null);
+    }
+
+    function installMainMenuListenners ()
+    {
+        // Add Car button
+        buttonAddCar = document.getElementById('navMainAddCarButton');
+        buttonAddCar.addEventListener('click', addCarMenuLoader); // Add event listener to the button
+
+        // List All Cars button
+        buttonListAllCars = document.getElementById('navMainListAllCarsButton');
+        buttonListAllCars.addEventListener('click', listAllCarsMenuLoader); // Add event listener to the button
+    }
+
+    // The Add Car event listener
+    function addCarMenuLoader() 
+    {
+        fetchFragment('/carpool/main/car/addCarMenu.jspf', navMenu, installAddCarMenuListeners);
+        fetchFragment('/carpool/main/car/addCarForm.jspf', workspace, null);
+    }
+
+    // The List All Cars event listener
+    function listAllCarsMenuLoader() 
+    {
+        fetchFragment('/carpool/main/car/listAllMenu.jspf', navMenu, installListAllCarsMenuListeners);
+        fetchFragment('/carpool/main/car/listAllExample.jspf', workspace, null);
+    }
+    
+    function addRowHandlers() 
+    {
+        var table = document.getElementById("listall_table");
+        var rows = table.getElementsByTagName("tr");
+        
+        for (i = 0; i < rows.length; i++) 
+        {
+            var currentRow = table.rows[i];
+            
+                var createClickHandler = function(row, col) 
+                {
+                    return function() {
+                        var cell = row.getElementsByTagName("td")[0]; 
+                        var id = cell.innerHTML;
+                        alert("id:" + id);
+                    };
+                };
+                currentRow.onclick = createClickHandler(currentRow);
+        }
+    }
+    
+    function onTableClick(obj, operation)
+    {
+        
+        console.log(obj);
+        console.log(operation + ' ' + obj.textContent);
+        
+        switch (operation) 
+        {
+            case 'detail':
+                console.log('Fetching Detail...')
+                alert("Details of: " + obj.textContent);
+                break;
+            case 'reserve':
+                console.log('Trigger Reservation...')
+                alert("Reservation of: " + obj.textContent);
+                break;
+            case 'delete':
+                console.log('Deleting Car...')
+                alert("Delete of: " + obj.textContent);
+                break;
+            default:
+                console.log('Invalid Operation');
+        }
+    }
+
+
+    //
+    // The Add Car Menu
+    //
+    function installAddCarMenuListeners() 
+    {
+        buttonAddCarSave = document.getElementById('navButtonAddCarSave');
+        buttonAddCarSave.addEventListener('click', addCarMenuOptionSave); // Add event listener to the button
+
+        buttonAddCarCancel = document.getElementById('navButtonAddCarCancel');
+        buttonAddCarCancel.addEventListener('click', showMainMenu); // Add event listener to the button
+    }
+
+    // The addCar Save option handler
+    function addCarMenuOptionSave() 
+    {
+        console.log('SAVE')
+        showMainMenu();
+    }
+
+    //
+    // The List All Cars Menu
+    //
+    function installListAllCarsMenuListeners() 
+    {
+        listAllCarsCancelButton = document.getElementById('navButtonAddCarCancel');
+        listAllCarsCancelButton.addEventListener('click', showMainMenu); // Add event listener to the button
+        sendReceiveRequest('/carpool/endpoints/ListAll', '{}');
+    }
+
+    
+    //*******************
+    // Libraries
+    //*******************
+
+    //
+    // sendReceiveRequest
+    // 
+    // Send and return jSon rquest to url endpoint
+    //
+    async function sendReceiveRequest(endpoint, outGoingJson) 
+    {
+        response = await fetch(endpoint, {
+
+            method: 'POST',
+                headers: 
+                {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                            
+            body: JSON.stringify( outGoingJson )
+        })
+        .then(response => response.json())
+        .then(response => console.log(JSON.stringify(response)));     
+
+        console.log(response);   
+        
+        return response;
+    }
+    
+    
+    //
+    // fetchFragment
+    // 
+    // Fetch HTML code fragment from url and place it in dest and call callback
     //
     async function fetchFragment(url, dest, callback) 
     {
@@ -34,105 +194,16 @@
             console.warn('Something went wrong.', err);
         });
     }
-    
-    //
-    // Updatable divs
-    //
-    const navMenu = document.getElementById('nav_menu');                // Menu div
-    const workspace = document.getElementById('workspace');             // Workspace div
+
+
 
 
     //
-    // The Main menu
+    // First Pass Code
     //
-    function showMainMenu()
-    {
-        fetchFragment('/carpool/main/mainMenu.jspf', navMenu, addMainMenuListenners);
-        fetchFragment('/carpool/main/mainWorkspace.jspf', workspace, null);
-    }
-
-
-    var buttonAddCar;
-    var buttonListAllCars;
-    
-
-    function addMainMenuListenners ()
-    {
-        // Add Car button
-        buttonAddCar = document.getElementById('navMainAddCarButton');
-        buttonAddCar.addEventListener('click', addCarMenuLoader); // Add event listener to the button
-        
-        // List All Cars button
-        buttonListAllCars = document.getElementById('navMainListAllCarsButton');
-        buttonListAllCars.addEventListener('click', listAllCarsMenuLoader); // Add event listener to the button
-    }
-
-
-    //
-    // The Add Car Menu
-    //
-    function addCarMenuLoader() 
-    {
-        fetchFragment('/carpool/main/car/addCarMenu.jspf', navMenu, addCarMenuListeners);
-        fetchFragment('/carpool/main/car/addCarForm.jspf', workspace, null);
-    }
-
-    var buttonAddCarSave;
-    var buttonAddCarCancel;
-
-    function addCarMenuListeners() 
-    {
-        buttonAddCarSave = document.getElementById('navButtonAddCarSave');
-        buttonAddCarSave.addEventListener('click', addCarMenuOptionSave); // Add event listener to the button
-
-        buttonAddCarCancel = document.getElementById('navButtonAddCarCancel');
-        buttonAddCarCancel.addEventListener('click', showMainMenu); // Add event listener to the button
-        
-    }
-
-    function addCarMenuOptionSave() 
-    {
-        console.log('SAVE')
-        showMainMenu();
-    }
-  
-    
-    
-    //
-    // The Add Car Menu
-    //
-    function listAllCarsMenuLoader() 
-    {
-        fetchFragment('/carpool/main/car/listAllMenu.jspf', navMenu, listAllCarsMenuListeners);
-        //fetchFragment('/carpool/main/car/addCarForm.jspf', workspace, null);
-    }
-
-    var listAllCarsCancelButton;
-    
-    function listAllCarsMenuListeners() 
-    {
-        console.log('Installing List Car Listeners');
-
-        listAllCarsCancelButton = document.getElementById('navButtonListAllCancel');
-        listAllCarsCancelButton.addEventListener('click', showMainMenu); // Add event listener to the button
-    }
-
-    function ListAllCarsMenuOptionSearch() 
-    {
-        console.log('LIST')
-        showMainMenu();
-    }
-
-    function ListAllCarsMenuOptionCancel() 
-    {
-        console.log('CANCEL')
-        showMainMenu();
-    }
-
-    
-    
-    
     showMainMenu();
-    
+
+
+
 </script>
                                                                        

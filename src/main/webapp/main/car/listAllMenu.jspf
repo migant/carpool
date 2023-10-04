@@ -2,5 +2,3 @@
 <h2>List All Cars</h2>
 
 <button id="navButtonAddCarCancel">Return to Main</button>
-
-<button id="navButtonListAllCancel">Cancel</button>

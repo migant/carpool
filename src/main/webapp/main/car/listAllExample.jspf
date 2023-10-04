@@ -1,0 +1,69 @@
+
+<style>
+    
+    table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    td, th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+
+    tr:nth-child(even) {
+      background-color: #dddddd;
+    }
+
+</style>
+
+
+<h1>Available Cars</h1>
+
+<div>
+    
+<table id="listall_table">
+
+    <tr>
+        <th>License Plate</th>
+        <th>Brand</th>
+        <th>Model</th>
+        <th>Details</th>
+        <th>Reserve</th>
+        <th>---</th>
+    </tr>
+
+    <tr>
+        <td>AA-00-AA</td>
+        <td>BMW</td>
+        <td>Series 5</td>
+        <td onclick="onTableClick(this, 'detail')">(Detail 1)</td>
+        <td onclick="onTableClick(this, 'reserve')">(Reserve 1)</td>
+        <td onclick="onTableClick(this, 'delete')">(Delete 1)</td>
+    </tr>
+
+    <tr>
+        <td>BB-11-BB</td>
+        <td>Mini</td>
+        <td>One</td>
+        <td onclick="onTableClick(this, 'detail')">(Detail 2)</td>
+        <td onclick="onTableClick(this, 'reserve')">(Reserve 2)</td>
+        <td onclick="onTableClick(this, 'delete')">(Delete 2)</td>
+    </tr>
+
+    <tr>
+        <td>CC-22-CC</td>
+        <td>Mini</td>
+        <td>John Cooper Works</td>
+        <td onclick="onTableClick(this, 'detail')">(Detail 3)</td>
+        <td onclick="onTableClick(this, 'reserve')">(Reserve 3)</td>
+        <td onclick="onTableClick(this, 'delete')">(Delete 3)</td>
+    </tr>
+
+</table>
+
+
+
+
