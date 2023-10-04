@@ -55,27 +55,7 @@
         fetchFragment('/carpool/main/car/listAllExample.jspf', workspace, null);
     }
     
-    function addRowHandlers() 
-    {
-        var table = document.getElementById("listall_table");
-        var rows = table.getElementsByTagName("tr");
-        
-        for (i = 0; i < rows.length; i++) 
-        {
-            var currentRow = table.rows[i];
-            
-                var createClickHandler = function(row, col) 
-                {
-                    return function() {
-                        var cell = row.getElementsByTagName("td")[0]; 
-                        var id = cell.innerHTML;
-                        alert("id:" + id);
-                    };
-                };
-                currentRow.onclick = createClickHandler(currentRow);
-        }
-    }
-    
+
     function onTableClick(obj, operation)
     {
         
@@ -118,6 +98,7 @@
     function addCarMenuOptionSave() 
     {
         console.log('SAVE')
+        sendReceiveRequest('/carpool/endpoints/AddCar', '{}');
         showMainMenu();
     }
 
